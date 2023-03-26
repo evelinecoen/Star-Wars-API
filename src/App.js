@@ -1,46 +1,42 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import PlanetDetails from './components/PlanetDetails';
 import './App.css';
 
-
 function App() {
-
   const [planets, setPlanets] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchPlanets () {
-      let res = await fetch("https://swapi.dev/api/planets/?page=1")
-      let data = await res.json(); // awaits the promise
-      setPlanets(data.results);
-      setLoading(false);
+    async function fetchPlanets() {
+      try {
+        const res = await fetch('https://swapi.dev/api/planets/'); // WHY ONLY 10 PLANETS
+        const data = await res.json();
+        setPlanets(data.results);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
     }
-  fetchPlanets()
-    
-  }, [])
+    fetchPlanets();
+  }, []);
 
-  console.log('data', planets)  // check if data is returning and thus API working
-  
+  console.log('data', planets); // check if data is returning and thus API working DELETE LATER
+
   return (
-    <div className="App">
-      <h1>Planets</h1>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <ul>
-          {planets.map((planet) => (
-            <li key={planet.name}>
-              <h2>{planet.name}</h2>
-              <p>Diameter: {planet.diameter} km </p>
-              <p>Climate: {planet.climate}</p>
-              <p>Terrain: {planet.terrain}</p>
-              <p>Number of habitants: {planet.population}</p>
-              <div>view details</div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home planets={planets} isLoading={isLoading} error={error} />} />
+        <Route path="/planetdetails/:id" element={<PlanetDetails planets={planets} />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
+
+
