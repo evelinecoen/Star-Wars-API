@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PlanetDetails from './PlanetDetails';
 
 function Home(props) {
   const { planets, isLoading, error } = props;
+  const [planetsState, setPlanetsState] = useState(planets);
+  const [editedPlanet, setEditedPlanet] = useState(null);
+
+  const handleEdit = (planet) => {
+    setEditedPlanet(planet);
+  };
+
+  const handleRemove = (planet) => {
+    setPlanetsState((prevPlanets) => prevPlanets.filter((p) => p.name !== planet.name));
+  };
+
+  useEffect(() => {
+    localStorage.setItem('planets', JSON.stringify(planetsState));
+  }, [planetsState]);
+
+  useEffect(() => {
+    const savedPlanets = JSON.parse(localStorage.getItem('planets')) || [];
+    setPlanetsState(savedPlanets);
+  }, []);
+
+  useEffect(() => {
+    setPlanetsState(planets);
+  }, [planets]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -17,7 +40,7 @@ function Home(props) {
     <div className='App'>
       <h1>Planets</h1>
       <ul>
-        {planets.map((planet) => (
+        {planetsState.map((planet) => (
           <li key={planet.name}>
             <h2>{planet.name}</h2>
             <p>Diameter: {planet.diameter} km </p>
@@ -27,10 +50,16 @@ function Home(props) {
 
             <p>
               <Link to={`/planetdetails/${planet.name}`}>Details</Link>
+              <button onClick={() => handleEdit(planet)}>Edit</button>
+              <button onClick={() => handleRemove(planet)}>Remove</button>
             </p>
           </li>
         ))}
       </ul>
+
+      {editedPlanet && (
+        <PlanetDetails planet={editedPlanet} onClose={() => setEditedPlanet(null)} />
+      )}
     </div>
   );
 }

@@ -11,12 +11,20 @@ function AddPlanet() {
   });
 
   const [storedPlanet, setStoredPlanet] = useState(null);
+  const [newPlanetsList, setNewPlanetsList] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newplanets = JSON.parse(localStorage.getItem('newplanets')) || [];
-    newplanets.push(newPlanet);
-    localStorage.setItem('newplanets', JSON.stringify(newplanets));
+    const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
+    if (editingIndex !== null) {
+      newPlanets[editingIndex] = newPlanet;
+      setEditingIndex(null);
+    } else {
+      newPlanets.push(newPlanet);
+    }
+    localStorage.setItem('newplanets', JSON.stringify(newPlanets));
+    setNewPlanetsList(newPlanets);
     setStoredPlanet(newPlanet);
     setNewPlanet({
       diameter: '',
@@ -27,18 +35,31 @@ function AddPlanet() {
     });
   };
 
+  const handleEdit = (index, planet) => {
+    setNewPlanet(planet);
+    setEditingIndex(index);
+  };
+
+  const handleRemove = (index) => {
+    const newPlanets = [...newPlanetsList];
+    const removedPlanet = newPlanets.splice(index, 1)[0];
+    localStorage.setItem('newplanets', JSON.stringify(newPlanets));
+    setNewPlanetsList(newPlanets);
+    setStoredPlanet(null);
+    setEditingIndex(null);
+  };
+
   const handleChange = (event) => {
     setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
   };
 
-// to store the planet even after refreshing 
   useEffect(() => {
-    const storedPlanet = JSON.parse(localStorage.getItem('newplanets'));
-    if (storedPlanet) {
-      setStoredPlanet(storedPlanet[storedPlanet.length - 1]);
+    const storedPlanets = JSON.parse(localStorage.getItem('newplanets'));
+    if (storedPlanets) {
+      setNewPlanetsList(storedPlanets);
+      setStoredPlanet(storedPlanets[storedPlanets.length - 1]);
     }
   }, []);
-  
 
   return (
     <div>
@@ -97,11 +118,14 @@ function AddPlanet() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Add Planet</button>
+        <button type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
       </form>
       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
+      <button onClick={() => handleEdit(/* index, planet */)}>Edit</button>
+      <button onClick={() => handleRemove(/* index */)}>Remove</button>
     </div>
   );
+  
 }
 
 export default AddPlanet;
