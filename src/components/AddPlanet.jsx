@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewPlanets from './NewPlanets';
 
 function AddPlanet() {
@@ -30,6 +30,15 @@ function AddPlanet() {
   const handleChange = (event) => {
     setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
   };
+
+// to store the planet even after refreshing 
+  useEffect(() => {
+    const storedPlanet = JSON.parse(localStorage.getItem('newplanets'));
+    if (storedPlanet) {
+      setStoredPlanet(storedPlanet[storedPlanet.length - 1]);
+    }
+  }, []);
+  
 
   return (
     <div>
