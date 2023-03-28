@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     async function fetchPlanets() {
       try {
-        const res = await fetch('https://swapi.dev/api/planets/'); // WHY ONLY 10 PLANETS
+        const res = await fetch('https://swapi.dev/api/planets/?page=1'); 
         const data = await res.json();
         setPlanets(data.results);
         setIsLoading(false);

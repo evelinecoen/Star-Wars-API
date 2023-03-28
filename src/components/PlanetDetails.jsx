@@ -5,6 +5,8 @@ function PlanetDetails() {
   const { id } = useParams();
   const [planet, setPlanet] = useState(null);
   const [residentNames, setResidentNames] = useState([]);
+  const [editing, setEditing] = useState(false);
+  const [editedPlanet, setEditedPlanet] = useState(null);
 
   useEffect(() => {
     fetch(`https://swapi.dev/api/planets/?search=${id}`)
@@ -23,23 +25,92 @@ function PlanetDetails() {
     }
   }, [planet]);
 
+  const handleEdit = () => {
+    setEditedPlanet({ ...planet });
+    setEditing(true);
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    console.log ('changes made');
+    fetch(`https://swapi.dev/api/planets/${planet.url}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Request-Method': 'PUT'
+  },
+  body: JSON.stringify(editedPlanet),
+})
+
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setPlanet(editedPlanet);
+      setEditing(false);
+      setEditedPlanet(null);
+    })
+    .catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  };
+  
+
+  const handleCancel = () => {
+    setEditing(false);
+  };
+
+  const handleRemove = () => {
+    
+  };
+
+  const renderDetails = () => (
+    <>
+      <h1>Planet details: {planet.name}</h1>
+      <p>Diameter: {planet.diameter}</p>
+      <p>Climate: {planet.climate}</p>
+      <p>Terrain: {planet.terrain}</p>
+      <p>Population: {planet.population}</p>
+      <p>Residents: {residentNames.join(', ')}</p>
+      <button onClick={handleEdit}>Edit</button>
+      <button onClick={handleRemove}>Remove</button>
+    </>
+  );
+
+  const renderForm = () => (
+    <form onSubmit={handleSave}>
+      <div>
+        <label htmlFor="diameter">Diameter:</label>
+        <input type="number" name="diameter" id="diameter" defaultValue={planet.diameter} onChange={(event) => setEditedPlanet({ ...editedPlanet, diameter: event.target.value })} required />
+      </div>
+      <div>
+        <label htmlFor="climate">Climate:</label>
+        <input type="text" name="climate" id="climate" defaultValue={planet.climate} onChange={(event) => setEditedPlanet({ ...editedPlanet, climate: event.target.value })} required />
+      </div>
+      <div>
+        <label htmlFor="terrain">Terrain:</label>
+        <input type="text" name="terrain" id="terrain" defaultValue={planet.terrain} onChange={(event) => setEditedPlanet({ ...editedPlanet, terrain: event.target.value })} required />
+      </div>
+      <div>
+        <label htmlFor="population">Population:</label>
+        <input type="number" name="population" id="population" defaultValue={planet.population} required />
+      </div>
+      <div>
+        <label htmlFor="residents">Residents:</label>
+        <input type="text" name="residents" id="residents" value={residentNames.join(', ')} readOnly />
+      </div>
+      <button type="submit">Save</button> {/* remove onClick event here */}
+    <button type="button" onClick={handleCancel}>Cancel</button>
+    </form>
+  );
+
   return (
     <div>
-      {planet && (
-        <div>
-          <h1>Planet details: {planet.name}</h1>
-          <p>Diameter: {planet.diameter} km</p>
-          <p>Climate: {planet.climate}</p>
-          <p>Terrain: {planet.terrain}</p>
-          <p>Number of inhabitants: {planet.population}</p>
-          <p>Residents:</p>
-          <ul>
-            {residentNames.map((name) => (
-              <li key={name}>{name}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      
+      {planet && (editing ? renderForm() : renderDetails())}
     </div>
   );
 }

@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import PlanetDetails from './PlanetDetails';
 
 function Home(props) {
   const { planets, isLoading, error } = props;
   const [planetsState, setPlanetsState] = useState(planets);
-  const [editedPlanet, setEditedPlanet] = useState(null);
-
-  const handleEdit = (planet) => {
-    setEditedPlanet(planet);
-  };
-
-  const handleRemove = (planet) => {
-    setPlanetsState((prevPlanets) => prevPlanets.filter((p) => p.name !== planet.name));
-  };
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     localStorage.setItem('planets', JSON.stringify(planetsState));
@@ -27,6 +18,17 @@ function Home(props) {
   useEffect(() => {
     setPlanetsState(planets);
   }, [planets]);
+
+  const handleNext = async () => {
+    try {
+      const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage + 1}`);
+      const data = await res.json();
+      setPlanetsState(data.results);
+      setCurrentPage(currentPage + 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -50,18 +52,14 @@ function Home(props) {
 
             <p>
               <Link to={`/planetdetails/${planet.name}`}>Details</Link>
-              <button onClick={() => handleEdit(planet)}>Edit</button>
-              <button onClick={() => handleRemove(planet)}>Remove</button>
             </p>
           </li>
         ))}
       </ul>
-
-      {editedPlanet && (
-        <PlanetDetails planet={editedPlanet} onClose={() => setEditedPlanet(null)} />
-      )}
+      <button onClick={() => handleNext()}>Next</button>
     </div>
   );
 }
 
 export default Home;
+
