@@ -20,15 +20,30 @@ function Home(props) {
   }, [planets]);
 
   const handleNext = async () => {
-    try {
-      const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage + 1}`);
-      const data = await res.json();
+  try {
+    const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage + 1}`);
+    const data = await res.json();
+    if (data.next !== null && currentPage < 6) {
       setPlanetsState(data.results);
       setCurrentPage(currentPage + 1);
-    } catch (error) {
-      console.log(error);
     }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  
+const handlePrevious = async () => {
+  try {
+    const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage - 1}`);
+    const data = await res.json();
+    setPlanetsState(data.results);
+    setCurrentPage(currentPage - 1);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -56,6 +71,7 @@ function Home(props) {
           </li>
         ))}
       </ul>
+      <button onClick={() => handlePrevious()}>Previous</button>
       <button onClick={() => handleNext()}>Next</button>
     </div>
   );
