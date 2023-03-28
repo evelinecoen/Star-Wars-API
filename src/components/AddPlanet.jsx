@@ -1,65 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import NewPlanets from './NewPlanets';
 
+
 function AddPlanet() {
-  const [newPlanet, setNewPlanet] = useState({
-    diameter: '',
-    climate: '',
-    terrain: '',
-    population: '',
-    residents: []
-  });
-
-  const [storedPlanet, setStoredPlanet] = useState(null);
-  const [newPlanetsList, setNewPlanetsList] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(null);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
-    if (editingIndex !== null) {
-      newPlanets[editingIndex] = newPlanet;
-      setEditingIndex(null);
-    } else {
-      newPlanets.push(newPlanet);
-    }
-    localStorage.setItem('newplanets', JSON.stringify(newPlanets));
-    setNewPlanetsList(newPlanets);
-    setStoredPlanet(newPlanet);
-    setNewPlanet({
+    const [newPlanet, setNewPlanet] = useState({
       diameter: '',
       climate: '',
       terrain: '',
       population: '',
       residents: []
     });
-  };
-
-  const handleEdit = (index, planet) => {
-    setNewPlanet(planet);
-    setEditingIndex(index);
-  };
-
-  const handleRemove = (index) => {
-    const newPlanets = [...newPlanetsList];
-    const removedPlanet = newPlanets.splice(index, 1)[0];
-    localStorage.setItem('newplanets', JSON.stringify(newPlanets));
-    setNewPlanetsList(newPlanets);
-    setStoredPlanet(null);
-    setEditingIndex(null);
-  };
-
-  const handleChange = (event) => {
-    setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
-  };
-
-  useEffect(() => {
-    const storedPlanets = JSON.parse(localStorage.getItem('newplanets'));
-    if (storedPlanets) {
-      setNewPlanetsList(storedPlanets);
-      setStoredPlanet(storedPlanets[storedPlanets.length - 1]);
-    }
-  }, []);
+  
+    const [storedPlanet, setStoredPlanet] = useState(null);
+    const [newPlanetsList, setNewPlanetsList] = useState([]);
+    const [editingIndex, setEditingIndex] = useState(null);
+    const [selectedPlanet, setSelectedPlanet] = useState(null);
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
+      if (editingIndex !== null) {
+        newPlanets[editingIndex] = newPlanet;
+        setEditingIndex(null);
+      } else {
+        newPlanets.push(newPlanet);
+      }
+      localStorage.setItem('newplanets', JSON.stringify(newPlanets));
+      setNewPlanetsList(newPlanets);
+      setStoredPlanet(newPlanet);
+      setNewPlanet({
+        diameter: '',
+        climate: '',
+        terrain: '',
+        population: '',
+        residents: []
+      });
+    };
+  
+    const handleEdit = (index, planet) => {
+      setNewPlanet(planet);
+      setEditingIndex(index);
+    };
+    
+    const handleRemove = (index) => {
+      const newPlanets = [...newPlanetsList];
+      newPlanets.splice(index, 1);
+      localStorage.setItem('newplanets', JSON.stringify(newPlanets));
+      setNewPlanetsList(newPlanets);
+      setStoredPlanet(null);
+      setEditingIndex(null);
+    };
+    
+  
+    const handleChange = (event) => {
+      setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
+    };
+  
+    useEffect(() => {
+      const storedPlanets = JSON.parse(localStorage.getItem('newplanets'));
+      if (storedPlanets) {
+        setNewPlanetsList(storedPlanets);
+        setStoredPlanet(storedPlanets[storedPlanets.length - 1]);
+      }
+    }, [])
 
   return (
     <div>
@@ -72,7 +75,7 @@ function AddPlanet() {
             id="diameter"
             value={newPlanet.diameter}
             onChange={handleChange}
-            required
+           required
           />
         </div>
         <div>
@@ -94,7 +97,7 @@ function AddPlanet() {
             id="terrain"
             value={newPlanet.terrain}
             onChange={handleChange}
-            required
+          required
           />
         </div>
         <div>
@@ -104,7 +107,7 @@ function AddPlanet() {
             name="population"
             id="population"
             value={newPlanet.population}
-            onChange={handleChange}
+           onChange={handleChange}
             required
           />
         </div>
@@ -116,16 +119,24 @@ function AddPlanet() {
             id="residents"
             value={newPlanet.residents}
             onChange={handleChange}
-          />
+         />
         </div>
         <button type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
       </form>
       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
-      <button onClick={() => handleEdit(/* index, planet */)}>Edit</button>
-      <button onClick={() => handleRemove(/* index */)}>Remove</button>
+      {newPlanetsList.map((planet, index) => (
+        <div key={index}>
+          <p>Diameter: {planet.diameter}</p>
+          <p>Climate: {planet.climate}</p>
+          <p>Terrain: {planet.terrain}</p>
+          <p>Population: {planet.population}</p>
+          <p>Residents: {planet.residents}</p>
+        <button onClick={() => handleEdit(index, planet)}>Edit</button>
+          <button onClick={() => handleRemove(index)}>Remove</button>
+        </div>
+      ))}
     </div>
   );
-  
 }
 
 export default AddPlanet;
