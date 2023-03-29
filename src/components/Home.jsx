@@ -37,8 +37,10 @@ const handlePrevious = async () => {
   try {
     const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage - 1}`);
     const data = await res.json();
-    setPlanetsState(data.results);
-    setCurrentPage(currentPage - 1);
+    if (data.previous !== null && currentPage > 1) {
+      setPlanetsState(data.results);
+      setCurrentPage(currentPage - 1);
+    }
   } catch (error) {
     console.log(error);
   }
