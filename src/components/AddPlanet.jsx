@@ -20,16 +20,16 @@ function AddPlanet() {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
-      if (editingIndex !== null) {
-        newPlanets[editingIndex] = newPlanet;
+     const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
+     if (editingIndex !== null) {
+       newPlanets[editingIndex] = newPlanet;
         setEditingIndex(null);
       } else {
         newPlanets.push(newPlanet);
       }
       localStorage.setItem('newplanets', JSON.stringify(newPlanets));
-      setNewPlanetsList(newPlanets);
-      setStoredPlanet(newPlanet);
+     setNewPlanetsList(newPlanets);  //erasing this kind of works
+     setStoredPlanet(newPlanet);
       setNewPlanet({
         name: '',
         diameter: '',
@@ -56,8 +56,8 @@ function AddPlanet() {
     
   
     const handleChange = (event) => {
-      setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
-    };
+/*       setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
+ */    };
   
     useEffect(() => {
       const storedPlanets = JSON.parse(localStorage.getItem('newplanets'));
@@ -139,8 +139,8 @@ function AddPlanet() {
         </div>
         <button type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
       </form>
-      {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
-      {newPlanetsList.map((planet, index) => (
+{/*       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
+ */}      {newPlanetsList.map((planet, index) => (
         <div key={index}>
           <h2>{planet.name}</h2>
           <p>Diameter: {planet.diameter}</p>
