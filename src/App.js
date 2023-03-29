@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
+import PlanetsAPI from './components/PlanetsAPI';
 import PlanetDetails from './components/PlanetDetails';
 import Navbar from './components/Navbar';
 import './App.css';
@@ -34,6 +35,7 @@ function App() {
       <Navbar/>
         <Routes>
         <Route path="/" element={<Home planets={planets} isLoading={isLoading} error={error} />} />
+        <Route path="/planets" element={<PlanetsAPI planets={planets} isLoading={isLoading} error={error} />} />
         <Route path="/planetdetails/:id" element={<PlanetDetails planets={planets} />} />
         <Route path="/newplanets" element={<NewPlanets /* planets={planets} */ isLoading={isLoading} error={error} />} />
         <Route path="/addplanet" element={<AddPlanet /* planets={planets} */ isLoading={isLoading} error={error} />} />
