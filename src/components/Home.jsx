@@ -26,6 +26,7 @@ function Home(props) {
     if (data.next !== null && currentPage < 6) {
       setPlanetsState(data.results);
       setCurrentPage(currentPage + 1);
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
     }
   } catch (error) {
     console.log(error);
@@ -37,9 +38,11 @@ const handlePrevious = async () => {
   try {
     const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage - 1}`);
     const data = await res.json();
-    if (data.previous !== null && currentPage > 1) {
+    if (data.previous !== null && currentPage > 1) { 
+      console.log(currentPage)
       setPlanetsState(data.results);
       setCurrentPage(currentPage - 1);
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }
   } catch (error) {
     console.log(error);
