@@ -4,6 +4,7 @@ import NewPlanets from './NewPlanets';
 
 function AddPlanet() {
     const [newPlanet, setNewPlanet] = useState({
+      name: '',
       diameter: '',
       climate: '',
       terrain: '',
@@ -29,6 +30,7 @@ function AddPlanet() {
       setNewPlanetsList(newPlanets);
       setStoredPlanet(newPlanet);
       setNewPlanet({
+        name: '',
         diameter: '',
         climate: '',
         terrain: '',
@@ -67,6 +69,17 @@ function AddPlanet() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={newPlanet.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div>
           <label htmlFor="diameter">Diameter:</label>
           <input
@@ -126,6 +139,7 @@ function AddPlanet() {
       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
       {newPlanetsList.map((planet, index) => (
         <div key={index}>
+          <h2>{planet.name}</h2>
           <p>Diameter: {planet.diameter}</p>
           <p>Climate: {planet.climate}</p>
           <p>Terrain: {planet.terrain}</p>
@@ -133,6 +147,7 @@ function AddPlanet() {
           <p>Residents: {planet.residents}</p>
         <button onClick={() => handleEdit(index, planet)}>Edit</button>
           <button onClick={() => handleRemove(index)}>Remove</button>
+          <br></br>
         </div>
       ))}
     </div>
