@@ -71,7 +71,7 @@ const handlePrevious = async () => {
             <p>Number of habitants: {planet.population}</p>
 
             <p>
-              <Link to={`/planetdetails/${planet.name}`}>Details</Link>
+              <Link to={`/planets/${planet.name}`}>Details</Link>
             </p>
           </li>
         ))}

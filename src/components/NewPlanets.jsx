@@ -8,6 +8,7 @@ function NewPlanets() {
       <h2>New Planets:</h2>
       {newPlanets.map((newPlanet, index) => (
         <div key={index}>
+          <h2>{newPlanet.name}</h2>
           <p>Diameter: {newPlanet.diameter}</p>
           <p>Climate: {newPlanet.climate}</p>
           <p>Terrain: {newPlanet.terrain}</p>

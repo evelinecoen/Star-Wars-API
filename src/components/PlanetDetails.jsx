@@ -32,32 +32,11 @@ function PlanetDetails() {
 
   const handleSave = (event) => {
     event.preventDefault();
-    console.log ('changes made');
-    fetch(`https://swapi.dev/api/planets/${planet.url}`, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Request-Method': 'PUT'
-  },
-  body: JSON.stringify(editedPlanet),
-})
+    setPlanet(editedPlanet);
+    setEditing(false);
+    setEditedPlanet(null);
+  };  
 
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      setPlanet(editedPlanet);
-      setEditing(false);
-      setEditedPlanet(null);
-    })
-    .catch((error) => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-  };
-  
 
   const handleCancel = () => {
     setEditing(false);
