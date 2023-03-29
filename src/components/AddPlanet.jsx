@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NewPlanets from './NewPlanets';
+import '../styles/AddPlanet.css'
 
 
 function AddPlanet() {
@@ -67,11 +68,13 @@ function AddPlanet() {
     }, [])
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
+    <div className="add-planet">
+      
+      <form className='add-planet-form' onSubmit={handleSubmit}>
+        <div className='forms'>
+        <h1 className="form-title">Add a new planet</h1>
+          <label htmlFor="name">Name</label>
+          <input className='form-input'
             type="text"
             name="name"
             id="name"
@@ -80,9 +83,9 @@ function AddPlanet() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="diameter">Diameter:</label>
-          <input
+        <div className='forms'>
+          <label htmlFor="diameter">Diameter</label>
+          <input className='form-input'
             type="number"
             name="diameter"
             id="diameter"
@@ -91,9 +94,9 @@ function AddPlanet() {
            required
           />
         </div>
-        <div>
-          <label htmlFor="climate">Climate:</label>
-          <input
+        <div className='forms'>
+          <label htmlFor="climate">Climate</label>
+          <input className='form-input'
             type="text"
             name="climate"
             id="climate"
@@ -102,9 +105,9 @@ function AddPlanet() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="terrain">Terrain:</label>
-          <input
+        <div className='forms'>
+          <label htmlFor="terrain">Terrain</label>
+          <input className='form-input'
             type="text"
             name="terrain"
             id="terrain"
@@ -113,9 +116,9 @@ function AddPlanet() {
           required
           />
         </div>
-        <div>
-          <label htmlFor="population">Population:</label>
-          <input
+        <div className='forms'>
+          <label htmlFor="population">Population</label>
+          <input className='form-input'
             type="number"
             name="population"
             id="population"
@@ -124,9 +127,9 @@ function AddPlanet() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="residents">Residents:</label>
-          <input
+        <div className='forms'>
+          <label htmlFor="residents">Residents</label>
+          <input className='form-input'
             type="text"
             name="residents"
             id="residents"
