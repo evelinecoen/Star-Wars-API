@@ -41,6 +41,7 @@ function AddPlanet() {
     };
   
     const handleEdit = (index, planet) => {
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
       setNewPlanet(planet);
       setEditingIndex(index);
     };
@@ -56,8 +57,13 @@ function AddPlanet() {
     
   
     const handleChange = (event) => {
-/*       setNewPlanet({ ...newPlanet, [event.target.name]: event.target.value });
- */    };
+      const { name, value } = event.target;
+      setNewPlanet((prevPlanet) => ({
+        ...prevPlanet,
+        [name]: value,
+      }));
+    };
+    
   
     useEffect(() => {
       const storedPlanets = JSON.parse(localStorage.getItem('newplanets'));
@@ -69,10 +75,10 @@ function AddPlanet() {
 
   return (
     <div className="add-planet">
-      
       <form className='add-planet-form' onSubmit={handleSubmit}>
         <div className='forms'>
-        <h1 className="form-title">Add a new planet</h1>
+        <h1 className="form-title">Add a new planet</h1> 
+        <h4 className="form-title"><i>Scroll down to explore your new planets!</i></h4> 
           <label htmlFor="name">Name</label>
           <input className='form-input'
             type="text"
@@ -139,20 +145,28 @@ function AddPlanet() {
         </div>
         <button type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
       </form>
+      
 {/*       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}
  */}      {newPlanetsList.map((planet, index) => (
-        <div key={index}>
+      
+        <div className='new-planets' key={index}>
+          <div className='planet'>
           <h2>{planet.name}</h2>
-          <p>Diameter: {planet.diameter}</p>
-          <p>Climate: {planet.climate}</p>
-          <p>Terrain: {planet.terrain}</p>
-          <p>Population: {planet.population}</p>
-          <p>Residents: {planet.residents}</p>
+          <p><b>Diameter: </b>{planet.diameter}</p>
+          <p><b>Climate: </b>{planet.climate}</p>
+          <p><b>Terrain: </b>{planet.terrain}</p>
+          <p><b>Population: </b>{planet.population}</p>
+          <p><b>Residents:</b> {planet.residents}</p>
         <button onClick={() => handleEdit(index, planet)}>Edit</button>
           <button onClick={() => handleRemove(index)}>Remove</button>
           <br></br>
+          </div>
         </div>
+    
       ))}
+      <div>
+      
+      </div>
     </div>
   );
 }

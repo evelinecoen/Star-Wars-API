@@ -39,8 +39,46 @@
 .forms{
   display: flex;
   flex-direction: inherit;
+  
 }
 .form-title {
     text-align: center;
+    margin: 10px;
 }
 
+.new-planets {
+    width: 300px;
+    height: 450px;
+    margin: 75px;
+    background-color: rgba(183, 195, 200, 0.392);
+    border-radius: 10%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+    
+  }
+
+
+  .add-planet {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .add-planet {
+    display: flex;
+    flex-direction: column;
+/*     justify-content: space-between;
+ */  }
+  
+/*   .new-planets {
+    flex-basis: 50%;
+  } */
+  
+  .add-planet-form {
+    flex-basis: auto;
+   
+  }
+
+  

@@ -1,4 +1,12 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&family=Poppins:wght@300&family=Space+Grotesk:wght@500&display=swap');
+
+* {
+  font-family: 'Averia Serif Libre', cursive;
+font-family: 'Poppins', sans-serif;
+/* font-family: 'Space Grotesk', sans-serif;
+ */  }
+  
 .planets-overview {
   text-align: center;
   color: white;

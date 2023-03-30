@@ -12,9 +12,10 @@ function Home() {
     <div className='home'>
         
         <div className='titles'>
-            <h1>Fancy title</h1>
-            <h2>very cool subtitle</h2>
+            <h1>The universe and beyond</h1>
+            <h2>Discover the coolest planets</h2>
         </div>
+        <br></br>
         <div className='home-page-buttons'>
             <button><Link className='button-text' to='/planets'>Planets</Link></button>
             <button><Link className='button-text' to='/newplanets'>New Planets</Link></button>

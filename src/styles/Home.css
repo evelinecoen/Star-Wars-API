@@ -1,7 +1,7 @@
 
 .home {
     font-family: "Arial";
-    height: 900px;
+    height: 800px;
    display: flex;
       flex-direction: column;
       justify-content: center;
@@ -15,7 +15,7 @@
  }
     
     .titles {
-      height: 250px;
+      height: 365px;
       font-size: 30px;
       text-align: center;
       color: white;
