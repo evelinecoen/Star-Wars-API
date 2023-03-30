@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function PlanetDetails() {
   const { id } = useParams();
@@ -7,6 +7,9 @@ function PlanetDetails() {
   const [residentNames, setResidentNames] = useState([]);
   const [editing, setEditing] = useState(false);
   const [editedPlanet, setEditedPlanet] = useState(null);
+  const [removing, setRemoving] = useState(false);
+
+  const navigate = useNavigate();  // after removing the planet locally, I will redirect the user straight back to the planet page
 
   useEffect(() => {
     fetch(`https://swapi.dev/api/planets/?search=${id}`)
@@ -43,7 +46,10 @@ function PlanetDetails() {
   };
 
   const handleRemove = () => {
-    
+    setPlanet(null);
+    console.log('successfully deleted')
+    alert(`You successfully deleted planet ${planet.name}`)
+    navigate('/planets');
   };
 
   const renderDetails = () => (

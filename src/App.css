@@ -61,6 +61,9 @@ font-family: 'Poppins', sans-serif;
   background-color: rgba(183, 195, 200, 0.392);
   margin-top: 100px;
   border-radius: 2%;
+  width: 600px;
+  height: auto;
+  box-sizing: border-box;
 }
 
 
