@@ -36,10 +36,9 @@ function PlanetsAPI(props) {
   
 const handlePrevious = async () => {
   try {
-    const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage - 1}`);
-    const data = await res.json();
-    if (data.previous !== null && currentPage > 1) { 
-      console.log(currentPage)
+    if (currentPage > 1) { 
+      const res = await fetch(`https://swapi.dev/api/planets/?page=${currentPage - 1}`);
+      const data = await res.json();
       setPlanetsState(data.results);
       setCurrentPage(currentPage - 1);
       window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -48,6 +47,7 @@ const handlePrevious = async () => {
     console.log(error);
   }
 };
+
 
 
   if (isLoading) {
@@ -59,25 +59,29 @@ const handlePrevious = async () => {
   }
 
   return (
-    <div className='App'>
+    <div className='planets-overview'>
       <h1>Planets</h1>
-      <ul>
+      <div >
+      <div className='planets'>
         {planetsState.map((planet) => (
-          <li key={planet.name}>
+          <div className='planet-info' key={planet.name}>
             <h2>{planet.name}</h2>
-            <p>Diameter: {planet.diameter} km </p>
-            <p>Climate: {planet.climate}</p>
-            <p>Terrain: {planet.terrain}</p>
-            <p>Number of habitants: {planet.population}</p>
+            <p className='test'><b>Diameter:</b> {planet.diameter} km </p>
+            <p><b>Climate:</b> {planet.climate}</p>
+            <p><b>Terrain:</b> {planet.terrain}</p>
+            <p><b>Number of habitants: </b>{planet.population}</p>
 
-            <p>
-              <Link to={`/planets/${planet.name}`}>Details</Link>
-            </p>
-          </li>
+            <button className='details-btn'>
+              <Link className='btn-text' to={`/planets/${planet.name}`}>Details</Link>
+            </button>
+          </div>
         ))}
-      </ul>
-      <button onClick={() => handlePrevious()}>Previous</button>
-      <button onClick={() => handleNext()}>Next</button>
+      </div>
+      </div>
+      <div>
+      <button className='prev-next-btn' onClick={() => handlePrevious()}>Previous</button>
+      <button className='prev-next-btn' onClick={() => handleNext()}>Next</button>
+      </div>
     </div>
   );
 }

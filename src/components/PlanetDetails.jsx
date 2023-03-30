@@ -47,16 +47,27 @@ function PlanetDetails() {
   };
 
   const renderDetails = () => (
-    <>
-      <h1>Planet details: {planet.name}</h1>
-      <p>Diameter: {planet.diameter}</p>
-      <p>Climate: {planet.climate}</p>
-      <p>Terrain: {planet.terrain}</p>
-      <p>Population: {planet.population}</p>
-      <p>Residents: {residentNames.join(', ')}</p>
+    <div className='planets-overview'>
+      <div className='planet-details'>
+      <h1><b>Planet details for </b>{planet.name}</h1>
+      <p><b>Diameter: </b>{planet.diameter}</p>
+      <p><b>Climate: </b>{planet.climate}</p>
+      <p><b>Terrain:</b> {planet.terrain}</p>
+      <p><b>Population:</b> {planet.population}</p>
+      {residentNames.length > 0 && (
+        <div className='residents'>
+          <p><b>Residents:</b></p>
+          <p className='residents-list'>
+            {residentNames.map((name) => (
+              <p key={name}><i>{name}</i></p>
+            ))}
+          </p>
+        </div>
+      )}
       <button onClick={handleEdit}>Edit</button>
       <button onClick={handleRemove}>Remove</button>
-    </>
+      </div>
+    </div>
   );
 
   const renderForm = () => (
