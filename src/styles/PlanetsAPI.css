@@ -29,9 +29,14 @@
     padding: 20px;
     box-sizing: border-box;
     text-decoration: none;
-    
-  
   }
+
+ /*  .prev-next {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } */
   .prev-next-btn {
     align-items: center;
   }

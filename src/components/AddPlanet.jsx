@@ -12,7 +12,12 @@ function AddPlanet() {
       population: '',
       residents: []
     });
-  
+
+    const formatter = new Intl.NumberFormat('en', {
+      style: 'decimal',
+      notation: 'compact'
+    })
+
     const [storedPlanet, setStoredPlanet] = useState(null);
     const [newPlanetsList, setNewPlanetsList] = useState([]);
     const [editingIndex, setEditingIndex] = useState(null);
@@ -73,6 +78,7 @@ function AddPlanet() {
       }
     }, [])
 
+  
   return (
     <div className="add-planet">
       <form className='add-planet-form' onSubmit={handleSubmit}>
@@ -90,7 +96,7 @@ function AddPlanet() {
           />
         </div>
         <div className='forms'>
-          <label htmlFor="diameter">Diameter</label>
+          <label htmlFor="diameter">Diameter <i>(in km)</i></label>
           <input className='form-input'
             type="number"
             name="diameter"
@@ -152,10 +158,10 @@ function AddPlanet() {
         <div className='new-planets' key={index}>
           <div className='planet'>
           <h2>{planet.name}</h2>
-          <p><b>Diameter: </b>{planet.diameter}</p>
+          <p><b>Diameter: </b>{planet.diameter} km </p>
           <p><b>Climate: </b>{planet.climate}</p>
           <p><b>Terrain: </b>{planet.terrain}</p>
-          <p><b>Population: </b>{planet.population}</p>
+          <p><b>Number of inhabitants: </b>{isNaN(planet.population) ? 'unknown' : formatter.format(planet.population)}</p>
           <p><b>Residents:</b> {planet.residents}</p>
         <button onClick={() => handleEdit(index, planet)}>Edit</button>
           <button onClick={() => handleRemove(index)}>Remove</button>

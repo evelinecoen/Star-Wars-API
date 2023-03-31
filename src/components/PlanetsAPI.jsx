@@ -6,6 +6,12 @@ function PlanetsAPI(props) {
   const [planetsState, setPlanetsState] = useState(planets);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const formatter = new Intl.NumberFormat('en', {
+    style: 'decimal',
+    notation: 'compact'
+  })
+
+
   useEffect(() => {
     localStorage.setItem('planets', JSON.stringify(planetsState));
   }, [planetsState]);
@@ -69,8 +75,7 @@ const handlePrevious = async () => {
             <p className='test'><b>Diameter:</b> {planet.diameter} km </p>
             <p><b>Climate:</b> {planet.climate}</p>
             <p><b>Terrain:</b> {planet.terrain}</p>
-            <p><b>Number of habitants: </b>{planet.population}</p>
-
+            <p><b>Number of inhabitants: </b>{isNaN(planet.population) ? 'unknown' : formatter.format(planet.population)}</p>
             <button className='details-btn'>
               <Link className='btn-text' to={`/planets/${planet.name}`}>Details</Link>
             </button>
@@ -78,7 +83,7 @@ const handlePrevious = async () => {
         ))}
       </div>
       </div>
-      <div>
+      <div className='prev-next'>
       <button className='prev-next-btn' onClick={() => handlePrevious()}>Previous</button>
       <button className='prev-next-btn' onClick={() => handleNext()}>Next</button>
       </div>
