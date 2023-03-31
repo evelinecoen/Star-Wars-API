@@ -4,7 +4,7 @@ In this application, you can discover the Star Wars API planets and you can add 
 
 ## Introduction
 
-This React application fetches data from an external API (SWAPI) and displays it in the app. You can also create your own planets. It includes multiple components, such as Home, PlanetsAPI, PlanetDetails, AddPlanet and Navbar. 
+This React application fetches data from the external Star Wars API (https://swapi.dev/) and displays it in the app. You can also create your own planets. It includes multiple components, such as Home, PlanetsAPI, PlanetDetails, AddPlanet and Navbar. 
 
 The App component fetches planet data from the Star Wars API and stores it. The PlanetsAPI component then uses this data to display a list of planets, along with their details, such as climate, terrain, and population. The component also includes a search bar that allows users to filter the planets based on their name, climate, or terrain. The PlanetsAPI component also includes functionality that allows users to navigate between pages of the planet data with next and Previous buttons. It is also possible to edit and remove a planet locally.
 

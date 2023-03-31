@@ -27,7 +27,6 @@ function App() {
     fetchPlanets();
   }, []);
 
-  console.log('data', planets); // check if data is returning and thus API working DELETE LATER
 
   return (
     <Router>
@@ -36,7 +35,7 @@ function App() {
         <Route path="/" element={<Home planets={planets} isLoading={isLoading} error={error} />} />
         <Route path="/planets" element={<PlanetsAPI planets={planets} isLoading={isLoading} error={error} />} />
         <Route path="/planets/:id" element={<PlanetDetails planets={planets} />} />
-        <Route path="/addplanet" element={<AddPlanet /* planets={planets} */ isLoading={isLoading} error={error} />} />
+        <Route path="/addplanet" element={<AddPlanet isLoading={isLoading} error={error} />} />
       </Routes>
     </Router>
   );
