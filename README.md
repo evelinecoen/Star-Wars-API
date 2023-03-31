@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# "The universe and beyond" App: Discover the SWAPI planets, and add your own.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this application, you can discover the Star Wars API planets and you can add your own.
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+Below you can find some screenshots of how the app looks like.
 
-### `npm start`
+The Star Wars planets:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src="./src/assets/images/homepage.png">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Please read the instructions below for a smooth set-up:
 
-### `npm run build`
+### `Set-up`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1) Download or clone this repository
+2) run  `npm install`
+3) run  `npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    This will un the app in the development mode.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm run eject`
+    The page will reload when you make changes.\
+    You may also see any lint errors in the console.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `Testing`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To test the app, run `npm test` in the terminal.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `Technologies used`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This app is running on HTML, CSS and Javascript (ReactJS).
 
-## Learn More
+### `Credits and licenses`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For this project, the Star Wars API (SWAPI) is used. The SWAPI is an open-source API that grants access to information regarding the Star Wars universe. It was developed and is currently managed by Paul Hallett and a team of collaborators. Further details regarding the SWAPI and its contributors can be found on the official website at https://swapi.dev/about.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `About the author`
 
-### Code Splitting
+For any questions, inquiries or suggestions related to this app, please contact Eveline Coenegrachts at evelinecoenegrachts@gmail.com.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
