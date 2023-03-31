@@ -64,6 +64,7 @@ font-family: 'Poppins', sans-serif;
   width: 600px;
   height: auto;
   box-sizing: border-box;
+  padding-bottom: 20px;
 }
 
 /* edit planet */

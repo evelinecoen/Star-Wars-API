@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 function NewPlanets() {
   const newPlanets = JSON.parse(localStorage.getItem('newplanets')) || [];
@@ -21,3 +21,4 @@ function NewPlanets() {
 }
 
 export default NewPlanets;
+ */

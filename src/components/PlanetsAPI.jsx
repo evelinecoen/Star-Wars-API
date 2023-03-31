@@ -66,8 +66,8 @@ const handlePrevious = async () => {
 
   return (
     <div className='planets-overview'>
-      <h1>Planets</h1>
-      <div >
+      <h1 className='h1-title'>Planets</h1>
+      {/* <div> */}
       <div className='planets'>
         {planetsState.map((planet) => (
           <div className='planet-info' key={planet.name}>
@@ -82,7 +82,7 @@ const handlePrevious = async () => {
           </div>
         ))}
       </div>
-      </div>
+      {/* </div> */}
       <div className='prev-next'>
       <button className='prev-next-btn' onClick={() => handlePrevious()}>Previous</button>
       <button className='prev-next-btn' onClick={() => handleNext()}>Next</button>

@@ -18,8 +18,8 @@ function Home() {
         <br></br>
         <div className='home-page-buttons'>
             <button><Link className='button-text' to='/planets'>Planets</Link></button>
-            <button><Link className='button-text' to='/newplanets'>New Planets</Link></button>
-            <button><Link className='button-text' to='/addplanet'>Add Planet</Link></button>
+{/*             <button><Link className='button-text' to='/newplanets'>New Planets</Link></button>
+ */}            <button><Link className='button-text' to='/addplanet'>Add Planet</Link></button>
         </div>
     </div>
   )

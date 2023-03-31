@@ -37,9 +37,7 @@ function App() {
         <Route path="/" element={<Home planets={planets} isLoading={isLoading} error={error} />} />
         <Route path="/planets" element={<PlanetsAPI planets={planets} isLoading={isLoading} error={error} />} />
         <Route path="/planets/:id" element={<PlanetDetails planets={planets} />} />
-        <Route path="/newplanets" element={<NewPlanets /* planets={planets} */ isLoading={isLoading} error={error} />} />
         <Route path="/addplanet" element={<AddPlanet /* planets={planets} */ isLoading={isLoading} error={error} />} />
-       
       </Routes>
     </Router>
   );
