@@ -1,17 +1,17 @@
-.planets-overview {
+/* .planets-overview {
     text-align: center;
     color: white;
     background-color: rgb(3, 3, 23);
     background-image: url('https://i.pinimg.com/originals/fd/b2/1c/fdb21c0e4f3dbb6ccd9a63c68fce8645.gif');
     display: flex;
     flex-direction: column;
-    height: 2000px;
+    height: 1700px;
     background-size: contain;
     resize: both;
     overflow: scroll;
   }
- 
-  .planets {
+  */
+ /*  .planets {
     display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -30,7 +30,7 @@
     padding: 20px;
     box-sizing: border-box;
     text-decoration: none;
-  }
+  } */
 
  /*  .prev-next {
     position: absolute;

@@ -5,7 +5,6 @@ import PlanetsAPI from './components/PlanetsAPI';
 import PlanetDetails from './components/PlanetDetails';
 import Navbar from './components/Navbar';
 import './App.css';
-import NewPlanets from './components/NewPlanets';
 import AddPlanet from './components/AddPlanet';
 
 function App() {

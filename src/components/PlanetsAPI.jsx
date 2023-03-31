@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css'
 
 function PlanetsAPI(props) {
   const { planets, isLoading, error } = props;
   const [planetsState, setPlanetsState] = useState(planets);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const formatter = new Intl.NumberFormat('en', {
     style: 'decimal',
@@ -54,6 +56,16 @@ const handlePrevious = async () => {
   }
 };
 
+const handleSearch = (e) => {
+  setSearchTerm(e.target.value);
+};
+
+const filteredPlanets = planetsState.filter((planet) => {
+  const name = planet.name.toLowerCase();
+  const climate = planet.climate.toLowerCase();
+  const terrain = planet.terrain.toLowerCase();
+  return name.includes(searchTerm.toLowerCase()) || climate.includes(searchTerm.toLowerCase()) || terrain.includes(searchTerm.toLowerCase());
+});
 
 
   if (isLoading) {
@@ -67,9 +79,16 @@ const handlePrevious = async () => {
   return (
     <div className='planets-overview'>
       <h1 className='h1-title'>Planets</h1>
-      {/* <div> */}
+      <div className='search'>
+        <input className='search-bar'
+              type='text'
+              placeholder='Search by name, climate, or terrain'
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+        </div>
       <div className='planets'>
-        {planetsState.map((planet) => (
+        {filteredPlanets.map((planet) => (
           <div className='planet-info' key={planet.name}>
             <h2>{planet.name}</h2>
             <p className='test'><b>Diameter:</b> {planet.diameter} km </p>
@@ -82,7 +101,6 @@ const handlePrevious = async () => {
           </div>
         ))}
       </div>
-      {/* </div> */}
       <div className='prev-next'>
       <button className='prev-next-btn' onClick={() => handlePrevious()}>Previous</button>
       <button className='prev-next-btn' onClick={() => handleNext()}>Next</button>

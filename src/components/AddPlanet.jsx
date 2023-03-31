@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import NewPlanets from './NewPlanets';
 import '../styles/AddPlanet.css'
 
 

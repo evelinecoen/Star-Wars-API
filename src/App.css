@@ -14,7 +14,7 @@ font-family: 'Poppins', sans-serif;
   background-image: url('https://i.pinimg.com/originals/fd/b2/1c/fdb21c0e4f3dbb6ccd9a63c68fce8645.gif');
   display: flex;
   flex-direction: column;
-  height: 2000px;
+  height: 1700px;
   resize: both;
   overflow: scroll;
   align-items: center;
@@ -55,6 +55,12 @@ font-family: 'Poppins', sans-serif;
 
 }
 
+.search-bar {
+  width: 250px;
+  height: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
 /* planet details */
 
 .planet-details {
