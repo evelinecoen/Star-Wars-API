@@ -32,7 +32,7 @@ function AddPlanet() {
         newPlanets.push(newPlanet);
       }
       localStorage.setItem('newplanets', JSON.stringify(newPlanets));
-     setNewPlanetsList(newPlanets);  //erasing this kind of works
+     setNewPlanetsList(newPlanets); 
      setStoredPlanet(newPlanet);
       setNewPlanet({
         name: '',
@@ -148,7 +148,7 @@ function AddPlanet() {
             onChange={handleChange}
          />
         </div>
-        <button type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
+        <button className='add-planet-btn' type="submit">{editingIndex !== null ? 'Save Changes' : 'Add Planet'}</button>
       </form>
       
 {/*       {storedPlanet && <NewPlanets newplanets={[storedPlanet]} />}

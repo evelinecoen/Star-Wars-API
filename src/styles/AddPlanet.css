@@ -7,13 +7,13 @@
 
 .add-planet-form{
     background-color: rgba(183, 195, 200, 0.392);
-    width: 400px;
-    min-height: 500px;
+    width: 350px;
     height: auto;
     border-radius: 10px;
-    margin: 3rem auto;
+    font-size: 10px;
+    margin: 1rem auto;
     box-shadow: 0 9px 50px hsla(0, 0%, 0%, 0.31);
-    padding: 2% 5%;
+    padding: 1% 5%;
     background-image: rgb(116, 110, 135);
    align-items: center;
    display: flex;
@@ -22,14 +22,12 @@
 
 .form-input {
     width: 300px;
-    height: 30px; 
+    height: 25px; 
     margin: 18px;
-    font-size: 16px;
+    font-size: 14px;
     color: #5E6472;
-    
     outline: none;
     border: none;
-    
     border-radius: 5px;
     transition: 0.2s linear;
 
@@ -43,7 +41,7 @@
 }
 .form-title {
     text-align: center;
-    margin: 10px;
+    margin: 5px;
 }
 
 .new-planets {
@@ -59,7 +57,11 @@
     
   }
 
-
+  .add-planet-btn {
+    width: 200px;
+    height: 40px;
+    font-size: 12px;
+  }
   .add-planet {
     display: flex;
     flex-direction: row;
@@ -69,12 +71,9 @@
   .add-planet {
     display: flex;
     flex-direction: column;
-/*     justify-content: space-between;
- */  }
+ }
   
-/*   .new-planets {
-    flex-basis: 50%;
-  } */
+
   
   .add-planet-form {
     flex-basis: auto;

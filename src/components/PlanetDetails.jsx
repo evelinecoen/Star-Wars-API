@@ -82,8 +82,8 @@ function PlanetDetails() {
               </p>
             </div>
           )}
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleRemove}>Remove</button>
+          <button className='planet-details-btn' onClick={handleEdit}>Edit</button>
+          <button className='planet-details-btn' onClick={handleRemove}>Remove</button>
         </div>
       </div>
     );
@@ -96,11 +96,11 @@ function PlanetDetails() {
     <form className='edit-details' onSubmit={handleSave}>
       <div >
       <h1 className="form-title">Edit planet {planet.name}</h1> 
-        <label htmlFor="diameter">Diameter:<i>(in km)</i></label>
+        <label htmlFor="diameter">Diameter:<i>(in km)</i><br></br></label>
         <input className='form-input' type="number" name="diameter" id="diameter" defaultValue={planet.diameter} onChange={(event) => setEditedPlanet({ ...editedPlanet, diameter: event.target.value })} required />
       </div>
       <div>
-        <label htmlFor="climate">Climate:</label>
+        <label htmlFor="climate">Climate:<br></br></label>
         <input className='form-input' type="text" name="climate" id="climate" defaultValue={planet.climate} onChange={(event) => setEditedPlanet({ ...editedPlanet, climate: event.target.value })} required />
       </div>
       <div>
@@ -108,15 +108,17 @@ function PlanetDetails() {
         <input className='form-input' type="text" name="terrain" id="terrain" defaultValue={planet.terrain} onChange={(event) => setEditedPlanet({ ...editedPlanet, terrain: event.target.value })} required />
       </div>
       <div>
-        <label htmlFor="population">Population:</label>
+        <label htmlFor="population">Population:<br></br></label>
         <input className='form-input' type="number" name="population" id="population" defaultValue={planet.population} required />
       </div>
       <div>
-        <label htmlFor="residents">Residents:</label>
+        <label htmlFor="residents">Residents:<br></br></label>
         <input className='form-input' type="text" name="residents" id="residents" value={residentNames.join(', ')} readOnly />
       </div>
-      <button type="submit">Save</button> {/* remove onClick event here */}
-    <button type="button" onClick={handleCancel}>Cancel</button>
+      <div>
+      <button className='planet-details-btn' type="submit">Save</button>
+    <button className='planet-details-btn' type="button" onClick={handleCancel}>Cancel</button>
+    </div>
     </form>
     </div>
   );

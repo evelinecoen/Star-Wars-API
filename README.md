@@ -1,14 +1,33 @@
-# "The universe and beyond" App: Discover the SWAPI planets, and add your own.
+# "The universe and beyond" App: Discover the Star Wars planets, and create your own
 
 In this application, you can discover the Star Wars API planets and you can add your own.
 
 ## Introduction
 
+This React application fetches data from an external API (SWAPI) and displays it in the app. It includes multiple components, such as Home, PlanetsAPI, PlanetDetails, AddPlanet and Navbar.
+
+The App component fetches planet data from the Star Wars API using the useEffect hook and stores it in state using the useState hook. 
+
+The PlanetsAPI component then uses this data to display a list of planets, along with their details, such as climate, terrain, and population. The component also includes a search bar that allows users to filter the planets based on their name, climate, or terrain. The PlanetsAPI component also includes functionality that allows users to navigate between pages of the planet data with next and Previous buttons. It is also possible to edit and remove a planet locally.
+
+Finally, the application includes an AddPlanet component, where the user can create their own planet, which will be stored and displayed locally.
+
 Below you can find some screenshots of how the app looks like.
 
-The Star Wars planets:
 
+The homepage:
 <img src="./src/assets/images/homepage.png">
+
+The Star Wars planets:
+<img src="./src/assets/images/planetsSWAPI.png">
+
+
+The Star Wars planet details:
+<img src="./src/assets/images/planetdetails.png">
+
+
+The create-your-own-planet page:
+<img src="./src/assets/images/addplanet.png">
 
 
 ## Instructions

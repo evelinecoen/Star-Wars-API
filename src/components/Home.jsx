@@ -12,7 +12,7 @@ function Home() {
         
         <div className='titles'>
             <h1>The universe and beyond</h1>
-            <h2>Discover the coolest planets</h2>
+            <h3>Discover and create the coolest planets!</h3>
         </div>
         <br></br>
         <div className='home-page-buttons'>

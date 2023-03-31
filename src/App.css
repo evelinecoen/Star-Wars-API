@@ -43,6 +43,7 @@ font-family: 'Poppins', sans-serif;
 
 .prev-next-btn {
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .details-btn {
@@ -65,21 +66,27 @@ font-family: 'Poppins', sans-serif;
 
 .planet-details {
   background-color: rgba(183, 195, 200, 0.392);
-  margin-top: 100px;
+  margin-top: 40px;
   border-radius: 2%;
-  width: 600px;
+  width: 400px;
   height: auto;
   box-sizing: border-box;
   padding-bottom: 20px;
+  font-size: 11px;
 }
 
+.planet-details-btn {
+  width: 90px;
+  height: 35px;
+  font-size: 12px;
+}
 /* edit planet */
 
  .edit-details {
     background-color: rgba(183, 195, 200, 0.392);
     width: 400px;
-    min-height: 500px;
     height: auto;
+    font-size: 11px;
     border-radius: 10px;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.31) 0px 9px 50px;
@@ -90,7 +97,7 @@ font-family: 'Poppins', sans-serif;
     text-align: center;
     color: white;
     position: absolute;
-    top: 50%;
+    top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
